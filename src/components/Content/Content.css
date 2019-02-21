@@ -1,0 +1,73 @@
+.content {
+    grid-area: content;
+    background-color: antiquewhite;
+}
+
+.content img{
+    width: 100%;
+}
+
+.content .content__ava{
+
+}
+
+.content__info-user{
+    display: flex;
+}
+
+.content__info-user__ava{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.content__info-user__ava img{
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    padding: 0 2rem;
+    border-radius: 50%;
+}
+
+.content__info-user__info{
+
+}
+
+.content__mypost-send{
+    text-align: center;
+}
+
+.content__mypost-send textarea{
+    font-family: "Lucida Fax";
+    background: rgb(238, 214, 172);
+    width: 90%;
+    border: none;
+    margin: 0 auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.content__mypost-send button{
+    width: 90%;
+    height: 35px;
+    margin: 10px 0;
+    background-color: darkred;
+    color: #fff;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.content__mypost-all{
+
+}
+
+.content__mypost-all{
+
+}
+
+.content__mypost-all{
+
+}

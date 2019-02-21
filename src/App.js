@@ -1,19 +1,15 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Section from './components/Section'
+import classes from './App.css';
+import {Header} from "./components/Header/Header";
+import {Nav} from "./components/Nav/Nav";
+import {Content} from "./components/Content/Content";
 
 const App = () => {
   return (
-      <div className="all_window">
-        <Header></Header>
-        <Section></Section>
-        <Section></Section>
-        <Section></Section>
-        <Section></Section>
-        <Section></Section>
-        <Footer></Footer>
+      <div className={classes["app-wrapper"]}>
+          <Header/>
+          <Nav/>
+          <Content/>
       </div>
   );
 }
