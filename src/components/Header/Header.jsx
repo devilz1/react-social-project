@@ -4,7 +4,9 @@ import classes from './Header.css'
 export const Header = props => {
     return (
         <header className={classes.header}>
-            <img src="https://universalservice24.ru/image/catalog/ezhednevnye/kia_stinger_2.jpg" alt=""/>
+            <div>
+                <span><b className={classes["fa-psi"]}></b>chology</span>
+            </div>
         </header>
     )
 }

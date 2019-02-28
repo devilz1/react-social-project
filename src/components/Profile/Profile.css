@@ -1,5 +1,5 @@
 .content {
-    grid-area: content;
+    width: 100%;
     background-color: antiquewhite;
 }
 
@@ -8,7 +8,13 @@
 }
 
 .content .content__ava{
+    height: 15rem;
+    overflow: hidden;
+    position: relative;
+}
 
+.content .content__ava img{
+    margin-top: -25%;
 }
 
 .content__info-user{
