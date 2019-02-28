@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './Nav.scss'
+import './Nav.sass'
 import {NavLink} from "react-router-dom";
 
 export class Nav extends Component{
@@ -15,7 +15,7 @@ export class Nav extends Component{
 
     render () {
         return (
-            <nav className="nav">
+            <nav className={"nav"}>
                 <NavLink to="/" exact activeClassName={"myClassActive"}>
                     <div className={"nav_link"}>My page</div>
                 </NavLink>
