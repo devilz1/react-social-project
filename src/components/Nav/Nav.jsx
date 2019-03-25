@@ -77,19 +77,19 @@ export class Nav extends Component{
                 onTouchMove={this.onSwipeMove}
                 onTouchEnd={this.onSwipeEnd}
             >
-                <NavLink to="/" exact activeClassName="myClassActive">
+                <NavLink to="/" exact activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">My page</div>
                 </NavLink>
-                <NavLink to="/dialogs" activeClassName="myClassActive">
+                <NavLink to="/dialogs" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">Messages</div>
                 </NavLink>
-                <NavLink to="/news" activeClassName="myClassActive">
+                <NavLink to="/news" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">News</div>
                 </NavLink>
-                <NavLink to="/music" activeClassName="myClassActive">
+                <NavLink to="/music" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">Music</div>
                 </NavLink>
-                <NavLink to="/settings" activeClassName="myClassActive">
+                <NavLink to="/settings" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">Settings</div>
                 </NavLink>
                 <FontAwesomeIcon icon={faBars} onClick={this.showHideCLick} className="buttonDiv" style={{
