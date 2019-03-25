@@ -1,0 +1,117 @@
+.content {
+    width: 100%;
+
+    img{
+        width: 100%;
+    }
+
+    .content__ava{
+        height: 10rem;
+        overflow: hidden;
+        position: relative;
+
+        img{
+            margin-top: -25%;
+        }
+    }
+
+    .content__info-user{
+        display: flex;
+        padding: 1rem;
+    }
+
+    .content__info-user__ava{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        img{
+            object-fit: cover;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            padding: 0 2rem;
+            border-radius: 50%;
+        }
+    }
+
+    .content__info-image{
+        padding: 1rem;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
+        @media(max-width: 850px){
+            :nth-child(2), :nth-child(3){
+                display: none;
+            }
+        }
+
+        @media(max-width: 568px){
+            :nth-child(1){
+                display: none;
+            }
+        }
+
+        img{
+            margin: 0 0.3rem;
+            cursor: pointer;
+            -webkit-transition: linear .2s;
+            -moz-transition: linear .2s;
+            -ms-transition: linear .2s;
+            -o-transition: linear .2s;
+            transition: linear .2s;
+
+            &:hover{
+                box-shadow: 0 0 3px black;
+            }
+        }
+    }
+
+    .content__mypost-send{
+        text-align: center;
+        padding: 1rem;
+
+        textarea{
+            font-family: "Lucida Fax";
+            background: rgb(238, 214, 172);
+            width: 90%;
+            border: none;
+            margin: 0 auto;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        button{
+            width: 90%;
+            height: 35px;
+            margin: 10px 0;
+            background-color: darkred;
+            color: #fff;
+            border: none;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+    }
+
+    .content__mypost-title{
+        h1{
+            text-align: center;
+        }
+    }
+
+    .content__mypost-all{
+
+    }
+
+    .content__mypost-all{
+
+    }
+
+    .content__mypost-all{
+
+    }
+}
+

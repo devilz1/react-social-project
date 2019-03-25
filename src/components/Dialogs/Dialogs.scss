@@ -1,0 +1,61 @@
+.dialogs-wrapper{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title{
+    width: 100%;
+}
+
+.dialogs-items{
+    border-right: 1px solid black;
+    width: calc(30% - 2px);
+
+    a{
+        text-decoration: none;
+        color: #8b0000;
+    }
+
+    .item{
+        padding: 1.2rem;
+        font-size: 1.2rem;
+        -webkit-transition: linear .2s;
+        -moz-transition: linear .2s;
+        -ms-transition: linear .2s;
+        -o-transition: linear .2s;
+        transition: linear .2s;
+
+        :hover{
+            background: #8b0000;
+            opacity: 0.5;
+            color: #fff;
+        }
+    }
+}
+
+.myItemActive .item{
+    background: #8b0000;
+    color: #fff;
+}
+
+.messages{
+    padding-left: 10px;
+    flex-grow: 1;
+
+    input{
+        width: 100%;
+        margin-top: 2rem;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        font-family: Arial;
+        border: none;
+        border-bottom: 1px solid silver;
+        outline: none;
+    }
+}
+
+.message-item{
+    padding: 0.5rem 0;
+}

@@ -1,11 +1,11 @@
 import React from 'react'
-import classes from './Header.css'
+import  './Header.scss'
 
 export const Header = props => {
     return (
-        <header className={classes.header}>
-            <div>
-                <span><b className={classes["fa-psi"]}></b>chology</span>
+        <header className="header">
+            <div className="header-block">
+                <span><b className="fa-psi"></b>chology</span>
             </div>
         </header>
     )

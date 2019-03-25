@@ -1,36 +1,37 @@
 import React from 'react'
-import classes from './Dialogs.css'
+import './Dialogs.scss'
 import NavLink from "react-router-dom/es/NavLink";
 
-const DialogItem = (props) => {
+const DialogItem = props => {
     return(
-        <NavLink to={"/dialogs/"+props.id} activeClassName={classes.myItemActive}>
-            <div className={classes.item}>
+        <NavLink to={"/dialogs/"+props.id} activeClassName="myItemActive">
+            <div className="item">
                 {props.name}
             </div>
         </NavLink>
     )
 }
 
-const Message = (props) => {
+const Message = props => {
     return(
-        <div className={classes["message-item"]}>{props.message}</div>
+        <div className="message-item">{props.message}</div>
     )
 }
 
 export const Dialogs = props => {
+    console.log(props);
     return (
-        <div className={classes["dialogs-wrapper"]}>
-            <h1 className={classes.title}>Dialogs</h1>
-            <div className={classes["dialogs-items"]}>
-                {props.state.dialogsData.map((desc, key) =>
+        <div className="dialogs-wrapper">
+            <h1 className="title">Dialogs</h1>
+            <div className="dialogs-items">
+                {props.state.state.dialogsData.map((desc, key) =>
                         <DialogItem key={key} name={desc.name} id={desc.id}/>
                     )
                 }
             </div>
-            <div className={classes.messages}>
+            <div className="messages">
                 {
-                    props.state.messagesData.map((mess, key) =>
+                    props.state.state.messagesData.map((mess, key) =>
                         <Message message={mess.messages} key={key}/>
                     )
                 }

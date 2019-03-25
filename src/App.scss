@@ -1,0 +1,39 @@
+*{
+  font-family: Nyala;
+}
+
+.app-wrapper{
+  display: -webkit-flex;
+  display: flex;
+  min-height: 100vh;
+  -webkit-flex-wrap: wrap;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: linear .3s;
+  transition: linear .3s;
+  background-color: antiquewhite;
+}
+
+.app-wrapper-padding{
+  padding-left: 200px;
+}
+
+.app-wrapper-content{
+
+}
+
+.shadow-block{
+  position: fixed;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: -1;
+  -webkit-transition: linear .3s;
+  -moz-transition: linear .3s;
+  -ms-transition: linear .3s;
+  -o-transition: linear .3s;
+  transition: linear .3s;
+}

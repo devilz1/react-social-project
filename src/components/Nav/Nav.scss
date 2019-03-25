@@ -4,7 +4,22 @@
     height: 100vh;
     background-color: #5f9ea0;
     width: 220px;
-    z-index: 10;
+    z-index: 22;
+    -webkit-transition: linear .2s;
+    -moz-transition: linear .2s;
+    -ms-transition: linear .2s;
+    -o-transition: linear .2s;
+    transition: linear .2s;
+
+    .testSwipe{
+        height: 100vh;
+        position: absolute;
+        right: -1.8rem;
+        top: 0;
+        content: ' ';
+        width: 64px;
+        z-index: 100;
+    }
 
     a{
         text-decoration: none;
@@ -38,19 +53,23 @@
     }
 
     .buttonDiv{
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        right: -3.2rem;
+        right: -2.7rem;
         top: 0;
-        background: black;
         cursor: pointer;
-        content: '';
+        color: #fff;
+        padding: 15px 0 0 10px;
+        z-index: 200;
+        -webkit-transition: linear .3s;
+        -moz-transition: linear .3s;
+        -ms-transition: linear .3s;
+        -o-transition: linear .3s;
+        transition: linear .3s;
     }
-}
 
-.openNav{
-    left: 0;
+
 }
 
 
