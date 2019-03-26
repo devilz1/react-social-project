@@ -141,6 +141,10 @@
             -o-transition: linear .3s;
             transition: linear .3s;
             cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
             &:hover{
                 color: darkred;

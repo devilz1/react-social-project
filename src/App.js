@@ -3,9 +3,9 @@ import './App.scss';
 import {Route, BrowserRouter} from "react-router-dom";
 import {Header} from "./components/Header/Header";
 import {Nav} from "./components/Nav/Nav";
-import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
+import Profile from "./components/Profile/Profile";
 
 class App extends Component{
     render(props) {
