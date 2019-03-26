@@ -3,6 +3,7 @@ import './Dialogs.scss'
 import NavLink from "react-router-dom/es/NavLink";
 
 const DialogItem = props => {
+    console.log(props.id);
     return(
         <NavLink to={"/dialogs/"+props.id} activeClassName="myItemActive">
             <div className="item">
@@ -10,16 +11,15 @@ const DialogItem = props => {
             </div>
         </NavLink>
     )
-}
+};
 
 const Message = props => {
     return(
         <div className="message-item">{props.message}</div>
     )
-}
+};
 
 export const Dialogs = props => {
-    console.log(props);
     return (
         <div className="dialogs-wrapper">
             <h1 className="title">Dialogs</h1>

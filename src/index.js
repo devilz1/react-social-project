@@ -24,16 +24,16 @@ export const store = {
             }
         ],
         messagesData: [
-            {id: 1, messages: 'Hi'},
-            {id: 2, messages: 'How are you'},
-            {id: 3, messages: ':-)'},
-            {id: 4, messages: 'Привет чудик)'},
-            {id: 5, messages: 'Как настрой?)'},
-            {id: 6, messages: ')))'},
-            {id: 7, messages: 'Ты пойдёшь?'},
-            {id: 8, messages: 'Будет весело'},
-            {id: 9, messages: 'Окай('},
-            {id: 10, messages: 'Потом увидимся)))'}
+            {id: 1, messages: 'Hi', author: 2},
+            {id: 2, messages: 'How are you', author: 2},
+            {id: 3, messages: ':-)', author: 3},
+            {id: 4, messages: 'Привет чудик)', author: 1},
+            {id: 5, messages: 'Как настрой?)', author: 3},
+            {id: 6, messages: ')))', author: 3},
+            {id: 7, messages: 'Ты пойдёшь?', author: 1},
+            {id: 8, messages: 'Будет весело', author: 1},
+            {id: 9, messages: 'Окай(', author: 2},
+            {id: 10, messages: 'Потом увидимся)))', author: 1}
         ],
         dialogsData: [
             {id: 1, name: 'Maria'},

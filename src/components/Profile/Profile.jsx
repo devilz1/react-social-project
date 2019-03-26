@@ -11,9 +11,9 @@ class Profile extends Component{
         this.state = {
             ...props.state.state.messagesPostData,
         };
+
         this.addLikeClick = this.addLikeClick.bind(this);
         this.addPost = this.addPost.bind(this);
-        this.changePost = this.changePost.bind(this);
     }
 
     addLikeClick = (id, props) => {
@@ -29,15 +29,10 @@ class Profile extends Component{
         })
     };
 
-    changePost = (e) => {
+    addPost = (newCurrent) => {
         let props = this.props.state.state;
-        let newPost = {id: props.messagesPostData.length + 1, message: e.target.value, like: 0, recipient: 1, author: 'Nikolay'};
-
-        return props.messagesPostData.push(newPost);
-    };
-
-    addPost = () => {
-        let props = this.props.state.state;
+        let newPost = {id: props.messagesPostData.length + 1, message: newCurrent.current.value, like: 0, recipient: 1, author: 'Nikolay'};
+        props.messagesPostData.push(newPost);
 
         this.setState({
             ...props.messagesPostData
@@ -46,6 +41,7 @@ class Profile extends Component{
 
     render () {
         let props_user = this.props.state.state.user;
+        let newPostMess = React.createRef();
         return (
             <div className="content">
                 <div className="content__ava">
@@ -79,14 +75,14 @@ class Profile extends Component{
                 }
 
                 <div className="content__mypost-send">
-                    <textarea name="" id="" rows="5" placeholder="your news..." onChange={this.changePost}></textarea><br/>
-                    <button onClick={this.addPost}>Send</button>
+                    <textarea name="" id="" rows="5" placeholder="your news..." ref={newPostMess}></textarea><br/>
+                    <button onClick={() => {this.addPost(newPostMess)}}>Send</button>
                 </div>
                 <div className="content__mypost-title">
                     <h1>My posts</h1>
                     <div className="content__mypost-all">
                         {
-                            _.map(this.state, (mess, key) => {
+                            _.map(_.sortBy(this.state, 'id'), (mess, key) => {
                                 if (_.contains(_.pluck(props_user, 'id'), mess.recipient)) {
                                     let message_id = mess.id;
                                     return <div className="content__post" key={key}>
