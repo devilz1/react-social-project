@@ -7,41 +7,31 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 class Profile extends Component{
     constructor(props){
         super(props);
-
         this.state = {
-            ...props.state.state.messagesPostData,
+            message: ""
         };
 
-        this.addLikeClick = this.addLikeClick.bind(this);
-        this.addPost = this.addPost.bind(this);
+        this.changeTextMessage = this.changeTextMessage.bind(this);
+        this.resetTextarea = this.resetTextarea.bind(this);
     }
 
-    addLikeClick = (id, props) => {
-        let props_messages = props.state.state.messagesPostData;
-        _.each(props_messages, (mess) => {
-            if (mess.id === id) {
-                mess.like = mess.like + 1
-            }
-        });
-
+    changeTextMessage(e){
         this.setState({
-            ...props_messages
+            message: e.target.value
         })
-    };
+    }
 
-    addPost = (newCurrent) => {
-        let props = this.props.state.state;
-        let newPost = {id: props.messagesPostData.length + 1, message: newCurrent.current.value, like: 0, recipient: 1, author: 'Nikolay'};
-        props.messagesPostData.push(newPost);
-
+    resetTextarea(){
         this.setState({
-            ...props.messagesPostData
+            message: ""
         })
-    };
+    }
 
     render () {
-        let props_user = this.props.state.state.user;
+        let props = this.props;
+        let props_user = props.state.user;
         let newPostMess = React.createRef();
+
         return (
             <div className="content">
                 <div className="content__ava">
@@ -75,20 +65,20 @@ class Profile extends Component{
                 }
 
                 <div className="content__mypost-send">
-                    <textarea name="" id="" rows="5" placeholder="your news..." ref={newPostMess}></textarea><br/>
-                    <button onClick={() => {this.addPost(newPostMess)}}>Send</button>
+                    <textarea name="" id="" rows="5" placeholder="your news..." ref={newPostMess} value={this.state.message} onChange={(e) => {this.changeTextMessage(e)}}></textarea><br/>
+                    <button onClick={() => {props.dispatch({type: "ADD_POST", data: this.state.message}); this.resetTextarea()}}>Send</button>
                 </div>
                 <div className="content__mypost-title">
                     <h1>My posts</h1>
                     <div className="content__mypost-all">
                         {
-                            _.map(_.sortBy(this.state, 'id'), (mess, key) => {
+                            _.map(_.sortBy(this.props.state.messagesPostData, 'id').reverse(), (mess, key) => {
                                 if (_.contains(_.pluck(props_user, 'id'), mess.recipient)) {
                                     let message_id = mess.id;
                                     return <div className="content__post" key={key}>
                                         <div className="content__post-author"><span>{mess.author}</span></div>
                                         <div className="content__post-text">{mess.message}</div>
-                                        <div className="content__post-like" onClick={() => {this.addLikeClick(message_id, this.props)}}>
+                                        <div className="content__post-like" onClick={() => {props.dispatch({type: "ADD_LIKE_CLICK", data: message_id})}}>
                                             <FontAwesomeIcon
                                                 icon={faHeart}
                                                 size='1.5x'
