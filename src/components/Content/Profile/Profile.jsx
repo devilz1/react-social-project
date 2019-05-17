@@ -3,6 +3,7 @@ import './Profile.scss'
 import _ from 'underscore'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { connect } from "react-redux";
 
 class Profile extends Component{
     constructor(props){
@@ -28,9 +29,11 @@ class Profile extends Component{
     }
 
     render () {
-        let props = this.props;
-        let props_user = props.state.user;
-        let newPostMess = React.createRef();
+        let props = this.props,
+            state = props.messagesPostData,
+            props_user = state.user,
+            props_mess = state.messagesPostData,
+            newPostMess = React.createRef();
 
         return (
             <div className="content">
@@ -66,19 +69,19 @@ class Profile extends Component{
 
                 <div className="content__mypost-send">
                     <textarea name="" id="" rows="5" placeholder="your news..." ref={newPostMess} value={this.state.message} onChange={(e) => {this.changeTextMessage(e)}}></textarea><br/>
-                    <button onClick={() => {props.dispatch({type: "ADD_POST", data: this.state.message}); this.resetTextarea()}}>Send</button>
+                    <button onClick={()=>{props.addPost(this.state.message); this.resetTextarea()}}>Send</button>
                 </div>
                 <div className="content__mypost-title">
                     <h1>My posts</h1>
                     <div className="content__mypost-all">
                         {
-                            _.map(_.sortBy(this.props.state.messagesPostData, 'id').reverse(), (mess, key) => {
+                            _.map(_.sortBy(props_mess, 'id').reverse(), (mess, key) => {
                                 if (_.contains(_.pluck(props_user, 'id'), mess.recipient)) {
                                     let message_id = mess.id;
                                     return <div className="content__post" key={key}>
                                         <div className="content__post-author"><span>{mess.author}</span></div>
                                         <div className="content__post-text">{mess.message}</div>
-                                        <div className="content__post-like" onClick={() => {props.dispatch({type: "ADD_LIKE_CLICK", data: message_id})}}>
+                                        <div className="content__post-like" onClick={()=>{props.updateLikeCount(message_id)}}>
                                             <FontAwesomeIcon
                                                 icon={faHeart}
                                                 size='1.5x'
@@ -98,4 +101,24 @@ class Profile extends Component{
     }
 }
 
-export default (Profile)
+let mapStateToProps = (state) => {
+    return {
+        messagesPostData: state.messagesPostData
+    }
+};
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: (newPost) => {
+            dispatch({type: "ADD_POST", data: newPost});
+        },
+
+        updateLikeCount: (message_id) => {
+            dispatch({type: "ADD_LIKE_CLICK", data: message_id})
+        }
+    }
+};
+
+const ContainerProfile = connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+export default ContainerProfile;
