@@ -1,5 +1,3 @@
-import _ from "underscore";
-
 const ADD_LIKE_CLICK = "ADD_LIKE_CLICK";
 
 let initialState = {

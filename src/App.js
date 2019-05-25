@@ -6,6 +6,7 @@ import {Nav} from "./components/Nav/Nav";
 import Music from "./components/Content/Music/Music";
 import Dialogs from "./components/Content/Dialogs/Dialogs";
 import ContainerProfile from './components/Content/Profile/Profile';
+import {ContainerUsers} from "./components/Content/Users/Users";
 
 class App extends Component{
     render(props) {
@@ -21,7 +22,11 @@ class App extends Component{
                     />
                     <Route
                         path="/dialogs"
-                        render={() => <Dialogs state={this.props.state} dispatch={this.props.dispatch}/>}
+                        render={() => <Dialogs/>}
+                    />
+                    <Route
+                        path="/users"
+                        render={() => <ContainerUsers/>}
                     />
                     <Route exact path="/music" render={() => <Music/>}/>
                 </div>

@@ -83,6 +83,9 @@ export class Nav extends Component{
                 <NavLink to="/dialogs" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">Messages</div>
                 </NavLink>
+                <NavLink to="/users" activeClassName="myClassActive" onClick={this.showHideCLick}>
+                    <div className="nav_link">Users</div>
+                </NavLink>
                 <NavLink to="/news" activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">News</div>
                 </NavLink>
