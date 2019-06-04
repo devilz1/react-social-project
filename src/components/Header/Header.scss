@@ -2,6 +2,32 @@
     width: 100%;
     background-color: darkred;
     height: 4rem;
+    display: flex;
+    justify-content: space-between;
+
+    .header-auth{
+        a{
+            padding: 8px 20px;
+            border: 1px solid #fff;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+            color: #fff;
+            -webkit-transition: linear .3s;
+            -moz-transition: linear .3s;
+            -ms-transition: linear .3s;
+            -o-transition: linear .3s;
+            transition: linear .3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+            &:hover{
+                color: #8b0000;
+                background-color: #fff;
+            }
+        }
+    }
 
     div{
         padding-top: 5px;

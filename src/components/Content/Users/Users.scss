@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: linear .3s;
 
   .users__item{
     display: flex;
@@ -25,7 +26,6 @@
     }
 
     .users__item-info-main{
-      flex-grow: 1;
       padding-left: 2rem;
 
       .users__item-name{
@@ -47,6 +47,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding-right: 50px;
+      flex-grow: 1;
 
       .item-other-info__status{
         color: #bebebe;
@@ -78,5 +79,26 @@
     &:hover{
       opacity: 0.8;
     }
+  }
+}
+
+.pagination{
+  padding-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  span{
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+
+  .is_clicked_pagination{
+    font-weight: 700;
+    font-size: 26px;
+    padding: 0 20px;
+    color: darkred;
+    text-shadow: 0 0 4px #939393;
   }
 }

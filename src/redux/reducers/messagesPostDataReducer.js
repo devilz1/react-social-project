@@ -2,6 +2,8 @@ import _ from "underscore";
 
 const ADD_POST = "ADD_POST";
 const ADD_LIKE_CLICK = "ADD_LIKE_CLICK";
+const SET_PROFILE = "SET_PROFILE";
+const TOGGLE_IS_FETCH = "TOGGLE_IS_FETCH";
 
 let initialState = {
     user: [
@@ -50,7 +52,7 @@ const messagePostDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messagesPostData: [...state.messagesPostData, {id: state.messagesPostData.length + 1, message: action.data, like: 0, recipient: 1, author: 'Nikolay'}]
-            }
+            };
         case ADD_LIKE_CLICK:
             _.each(state.messagesPostData, (mess) => {
                 if (mess.id === action.data) {
@@ -60,6 +62,16 @@ const messagePostDataReducer = (state = initialState, action) => {
 
             return {
                 ...state
+            };
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: action.data
+            };
+        case TOGGLE_IS_FETCH:
+            return {
+                ...state,
+                isFetching: action.data
             };
         default: return state;
     }

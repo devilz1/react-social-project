@@ -77,7 +77,7 @@ export class Nav extends Component{
                 onTouchMove={this.onSwipeMove}
                 onTouchEnd={this.onSwipeEnd}
             >
-                <NavLink to="/" exact activeClassName="myClassActive" onClick={this.showHideCLick}>
+                <NavLink to="/profile" exact activeClassName="myClassActive" onClick={this.showHideCLick}>
                     <div className="nav_link">My page</div>
                 </NavLink>
                 <NavLink to="/dialogs" activeClassName="myClassActive" onClick={this.showHideCLick}>

@@ -1,24 +1,28 @@
 import React, {Component} from 'react';
 import './App.scss';
 import {Route, BrowserRouter} from "react-router-dom";
-import {Header} from "./components/Header/Header";
 import {Nav} from "./components/Nav/Nav";
 import Music from "./components/Content/Music/Music";
 import Dialogs from "./components/Content/Dialogs/Dialogs";
 import ContainerProfile from './components/Content/Profile/Profile';
 import {ContainerUsers} from "./components/Content/Users/Users";
+import {HeaderContainer} from "./components/Header/Header";
 
 class App extends Component{
     render(props) {
         return (
             <BrowserRouter>
                 <div className="app-wrapper">
-                    <Header/>
+                    <HeaderContainer/>
                     <Nav/>
                     <Route
-                        exact
-                        path="/"
+                        path="/profile/:userId?"
                         render={() => <ContainerProfile/>}
+                    />
+                    <Route
+                        path="/profile"
+                        render={() => <ContainerProfile/>}
+                        exact
                     />
                     <Route
                         path="/dialogs"
@@ -28,7 +32,7 @@ class App extends Component{
                         path="/users"
                         render={() => <ContainerUsers/>}
                     />
-                    <Route exact path="/music" render={() => <Music/>}/>
+                    <Route path="/music" render={() => <Music/>}/>
                 </div>
             </BrowserRouter>
         );
