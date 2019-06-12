@@ -2,40 +2,29 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import './Users.scss'
 import _ from "underscore";
-import * as axios from "axios";
 import default_photo from "./../../../image/default-photo.png";
 import Preloader from "../../Common/Preloader/Preloader";
+import PreloaderButton from "../../Common/PreloaderButton/PreloaderButton";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../../api/api";
+import {
+    follow, getPageChanged,
+    getUsersThunkCreator,
+    setButtonPreloader,
+    setCurrentPage,
+} from "../../../redux/reducers/usersReducer";
 
 class Users extends Component{
-    constructor(props){
-        super(props);
-
-        this.onPageChanged = this.onPageChanged.bind(this);
-    }
     componentDidMount() {
-        this.props.setTogglePreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setTogglePreloader(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-        });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
-
-    onPageChanged = (pageNum) => {
-        this.props.setCurrentPage(pageNum);
-        this.props.setTogglePreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`).then(response => {
-            this.props.setTogglePreloader(false);
-            this.props.setUsers(response.data.items);
-        });
-    };
 
     render = () => {
         let props = this.props,
             pagesCount = Math.ceil(props.totalUsersCount / props.pageSize),
             pages = [],
             fetching = props.isFetching;
+            console.log(props);
 
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
@@ -56,9 +45,41 @@ class Users extends Component{
                                     {/*<p className="users__item-city">City: <span>{index.location.city}</span></p>*/}
                                 </div>
                                 <div className="users__item-other-info">
-                                    <button className="users__button" onClick={() => {props.follow(index.id)}}>
+                                    <button
+                                        disabled={props.isFetchButton ? true : false}
+                                        className="users__button"
+                                        onClick={
+                                            () => {
+                                                !index.followed
+                                                    ?
+                                                    usersAPI.getFollow(index.id).then(response => {
+                                                        if (response.data.resultCode === 0) {
+                                                            props.follow(index.id);
+                                                            props.setButtonPreloader(false, index.id);
+                                                        }
+                                                    })
+                                                    :
+                                                    usersAPI.getUnfollow(index.id).then(response => {
+                                                        if (response.data.resultCode === 0) {
+                                                            props.follow(index.id);
+                                                            props.setButtonPreloader(false, index.id);
+                                                        }
+                                                    })
+                                                props.setButtonPreloader(true, index.id);
+                                            }
+                                        }>
                                         {
-                                            index.followed ? "Удалить" : "Добавить"
+                                            index.followed
+                                                ? !props.isFetchButton
+                                                    ? "Удалить"
+                                                    : props.idUserButtonToggle === index.id
+                                                        ? <PreloaderButton/>
+                                                        : "Удалить"
+                                                : !props.isFetchButton
+                                                    ? "Добавить"
+                                                    : props.idUserButtonToggle === index.id
+                                                        ? <PreloaderButton/>
+                                                        : "Добавить"
                                         }
                                     </button>
                                     <p className="item-other-info__status">{index.status}</p>
@@ -72,7 +93,7 @@ class Users extends Component{
                                 return <span
                                     key={key}
                                     className={props.currentPage === item ? 'is_clicked_pagination' : ''}
-                                    onClick={(e) => {this.onPageChanged(item)}}
+                                    onClick={(e) => {props.getPageChanged(item, this.props.pageSize)}}
                                 >{item}</span>
                             })
                         }
@@ -91,40 +112,27 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersAll.totalUsersCount,
         currentPage: state.usersAll.currentPage,
         isFetching: state.usersAll.isFetching,
+        isFetchButton: state.usersAll.isFetchingButton,
+        idUserButtonToggle: state.usersAll.idUserButtonToggle,
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
-            dispatch({
-                type: 'FOLLOW',
-                action: userId
-            })
-        },
-        setUsers: (users) => {
-            dispatch({
-                type: 'SET_USERS',
-                action: users
-            })
+            dispatch(follow(userId));
         },
         setCurrentPage: (id_page) => {
-            dispatch({
-                type: 'SET_CURRENT_PAGE',
-                action: id_page
-            })
+            dispatch(setCurrentPage(id_page));
         },
-        setTotalUsersCount: (count) => {
-            dispatch({
-                type: 'SET_TOTAL_USERS_COUNT',
-                action: count
-            })
+        setButtonPreloader: (toggle, id_user) => {
+            dispatch(setButtonPreloader(toggle, id_user));
         },
-        setTogglePreloader: (toggle) => {
-            dispatch({
-                type: 'TOGGLE_IS_FETCH',
-                action: toggle
-            })
+        getUsersThunkCreator: (currentPage, pageSize) => {
+            dispatch(getUsersThunkCreator(currentPage, pageSize));
+        },
+        getPageChanged: (pageNum, pageSize) => {
+            dispatch(getPageChanged(pageNum, pageSize));
         }
     }
 };

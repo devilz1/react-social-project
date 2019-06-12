@@ -4,9 +4,9 @@ import _ from 'underscore'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { connect } from "react-redux";
-import * as axios from "axios";
 import Preloader from "../../Common/Preloader/Preloader";
 import {withRouter} from "react-router-dom";
+import {usersAPI} from "../../../api/api";
 
 class Profile extends Component{
     constructor(props){
@@ -34,9 +34,8 @@ class Profile extends Component{
     componentDidMount() {
         let userID = this.props.match.params.userId;
         this.props.setToggle(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${!userID ? 1078 : userID}`)
-            .then(response => {
-                this.props.setProfile(response.data);
+        usersAPI.getProfile(userID).then(response => {
+                this.props.setProfile(response);
                 this.props.setToggle(false);
         });
     }

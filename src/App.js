@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.scss';
-import {Route, BrowserRouter} from "react-router-dom";
+import {Route, BrowserRouter, Switch} from "react-router-dom";
 import {Nav} from "./components/Nav/Nav";
 import Music from "./components/Content/Music/Music";
 import Dialogs from "./components/Content/Dialogs/Dialogs";
@@ -15,24 +15,33 @@ class App extends Component{
                 <div className="app-wrapper">
                     <HeaderContainer/>
                     <Nav/>
-                    <Route
-                        path="/profile/:userId?"
-                        render={() => <ContainerProfile/>}
-                    />
-                    <Route
-                        path="/profile"
-                        render={() => <ContainerProfile/>}
-                        exact
-                    />
-                    <Route
-                        path="/dialogs"
-                        render={() => <Dialogs/>}
-                    />
-                    <Route
-                        path="/users"
-                        render={() => <ContainerUsers/>}
-                    />
-                    <Route path="/music" render={() => <Music/>}/>
+                    <Switch>
+                        <Route
+                            path="/profile/:userId?"
+                            render={() => <ContainerProfile/>}
+                        />
+                        <Route
+                            path="/profile"
+                            render={() => <ContainerProfile/>}
+                            exact
+                        />
+                        <Route
+                            path="/dialogs"
+                            render={() => <Dialogs/>}
+                        />
+                        <Route
+                            path="/users"
+                            render={() => <ContainerUsers/>}
+                        />
+                        <Route
+                            path="/music"
+                            render={() => <Music/>}
+                        />
+                        <Route
+                            path="*"
+                            render={() => <ContainerProfile/>}
+                        />
+                    </Switch>
                 </div>
             </BrowserRouter>
         );

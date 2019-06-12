@@ -1,0 +1,16 @@
+.wrapperPreloader{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: -10px;
+  justify-content: center;
+  transition: linear .3s;
+
+  .preloaderButton{
+    transition: linear .3s;
+    width: 40px;
+  }
+}
+
+
+
